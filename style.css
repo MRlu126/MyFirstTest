@@ -1,0 +1,300 @@
+/*
+* @Author: MRlu
+* @Date:   2017-08-24 17:09:56
+* @Last Modified by:   MR陆培力
+* @Last Modified time: 2017-08-24 17:10:47
+*/
+body,html{
+        width: 100%;
+        height: 100%;
+        font-family:'微软雅黑';
+    }
+    *{margin:0;padding:0;}
+    .container_box{
+     width: 980px;
+     height: 1386px;
+     margin: 0 auto;
+    }
+    .container{
+        width: 892px;
+        height:1386px;
+        margin: 0 auto;
+    }
+    header{
+        width: 100%;
+        height: 61px;
+        border-bottom: 2px solid #938e8c;
+    }
+    header>span{
+        display: block;
+        font-size: 12px;
+        color: #d45d5c;
+        float: right;
+        padding-top: 42px;
+    }
+    .logo{
+        display: inline-block;
+        width: 110px;
+        height: 61px;
+        background: #ff4d4d;
+        opacity: 0.7;
+    }
+    .banner{
+        width: 640px;
+        height: 301px;
+        margin-top: 34px;
+        background: url('img/task.gif') no-repeat;
+        float: left;
+    }
+    .left_box{
+        width:191px;
+        height: 301px;
+        background: rgba(0, 153, 51, 0.3);
+        float: left;
+    }
+    .right_box{
+        width:191px;
+        height: 301px;
+        background: rgba(204, 0, 0,0.3);
+        float: right;
+    }
+    .connet_box{     /*右边盒子 */
+        position: relative;
+        width: 203px;
+        height: 299px;
+        margin-top: 34px;
+        padding-top: 5px;
+        float: right;
+        border-top: 2px solid #cc8091;
+    }
+    .connet_box a{    /* ABOUT */
+        width: auto;
+        height: 50px;
+        color: #000000;
+        text-decoration: none;
+        border-bottom: 2px solid black;
+    }
+    .connet_box a>p{
+        font-size: 24px;
+        display: inline-block;
+        font-family: '微软雅黑';
+    }
+    .connet_box>p{
+        font-family: '楷体';
+        font-size: 12px;
+        color: #676767;
+        line-height: 10px;
+        margin-top: 5px;
+    }
+     .connet_box>b{
+        font-family: '微软雅黑';
+        font-size: 116px;
+        font-style: italic;
+        font-weight: 600;
+        color: #75b86b;
+        margin-left:-25px;
+     }
+     .connet_box>div{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+     }
+     .connet_box>div>span:nth-child(1){
+        float: left;
+        font-size: 55px;
+        color: #cc8091;
+     }
+     .connet_box_span{
+        margin-top: 35px;
+        display: block;
+        width: 100%;
+        height: 50px;
+     }
+     .connet_box_span>p:nth-child(1){
+        line-height: 10px;
+        font-size: 21px;
+        color: #cc8091;
+     }
+     .connet_box_span>p:nth-child(2){
+        font-size: 12px;
+        color: black;
+     }
+     .acticle{
+        width: 641px;
+        height: 175px;
+        clear: both;
+     }
+     /* what */
+     .acticle_what{
+        float: left;
+        width: 232px;
+        height: 100%;
+        background: white;
+     }
+     .acticle_what a{
+        padding: 5px 0 10px 2px;
+        font-weight: bold;
+        font-size: 16px;
+        color: darkgreen;
+     }
+     .acticle_what p{
+        font-size: 12px;
+        padding: 2px;
+        opacity: 0.7;
+     }
+     /* when */
+     .acticle_when{
+        margin-left: 24px;
+        float: left;
+        width: 206px;
+        height: 100%;
+        background: white;
+     }
+     .acticle_when a{
+        padding: 5px 0 10px 2px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #ff9933;
+     }
+     .acticle_when p{
+        font-size: 12px;
+        padding: 1px;
+        opacity: 0.7;
+     }
+     /* how */
+     .acticle_how{
+        position: relative;
+        margin-left: 24px;
+        float: left;
+        width: 154px;
+        height: 100%;
+        background: white;
+     }
+     .acticle_how a{
+        padding: 5px 0 10px 2px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #cc0000;
+     }
+     .acticle_how p{
+        font-size: 12px;
+        padding: 1px;
+        opacity: 0.7;
+     }
+     .acticle_how>div{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 66px;
+        padding: 5px;
+        opacity: 0.7;
+     }
+     .acticle_how>div>span>i{
+        font-size: 12px;
+        color:#cd4a48;
+     }
+     .msg_box{
+        margin-top: 70px;
+        width: 100%;
+        height: 647px;
+        border-bottom: 1px solid #938e8c;
+     }
+     /* left文本盒子 */
+     .leftside_box{
+        position: relative;
+        width: 417px;
+        height: 647px;
+        float: left;
+     }
+     .leftside_title{
+        font-family: '黑体';
+        float: right;
+        width: 415px;
+        height: 171px;
+        margin-top: -16px;
+        border-bottom: 2px solid #11456b;
+     }
+     .leftside_title>b>i{
+        padding: 0;
+        display: inline;
+        font-size: 72px;
+        color: #f5e327;
+     }
+     .leftside_title>b>p{
+        display: initial;
+        font-size: 42px;
+        color: #11456b;
+        margin-left:20px;
+     }
+     .leftside_title>p{
+        font-size: 33px;
+        color: #11456b;
+     }
+     .leftside_box>span{
+        float: left;
+        font-size: 70px;
+        color: #f5e327;
+     }
+     .leftside_box>p{
+        font-size: 12px;
+        display: initial;
+        opacity: 0.7;
+     }
+     .imagebox>img{
+        float: right;
+        margin-top: 0;
+        padding-top: 0;
+     }
+     /* right文本盒子 */
+     .rightside_box{
+        position: relative;
+        width: 458px;
+        height: 647px;
+        float: right;
+     }
+     .rightbottom_box{
+        position: absolute;
+        bottom: 40px;
+        width: 458px;
+        height: 318px;
+        background:#EDECD6;
+     }
+     .rightbottom_box>div{
+        position: absolute;
+        bottom: 0;
+        width: 260px;
+        height: 160px;
+        background:#D45C5B;
+     }
+     .rightbottom_box>div>div{
+        float: left;
+        width: 186px;
+        height: 82px;
+        padding: 2px;
+        margin-top: 37px;
+        border-left: 2px solid white;
+        opacity: 0.9;
+     }
+     .rightbottom_box>div>p{
+        float: left;
+        display: inline;
+        margin-top: 0;
+        font-size: 110px;
+        font-weight: 500;
+        color: #ffffff;
+     }
+     .rightbottom_box>div>div>p{
+        color: white;
+        font-size: 20px;
+        font-family: '黑体';
+        font-style: italic;
+     }
+     .rightbottom_box>div>div>span{
+        display: block;
+        color: white;
+        margin-top: 6px;
+        font-size: 12px;
+        font-family: '黑体';
+        line-height: 12px;
+     }
