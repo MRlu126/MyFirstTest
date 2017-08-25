@@ -56,7 +56,7 @@ window.onload=function(){
 	
 	var strln=str.length;           //样式字符串
 	var strln2=argbox.length;       //简历HTML
-	var talstr=strln+strln3;        //两个字符串的总长度
+	var talstr=strln+strln2;        //两个字符串的总长度
 	/*定时器*/
 	timer=setInterval(function(){
 	code.innerHTML=str.substring(0,n);
