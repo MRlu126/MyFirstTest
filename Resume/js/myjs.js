@@ -1,7 +1,7 @@
 window.onload=function(){
 	var str=" /*你好! 很高兴能在这里见到你!*/\n"
 	+" /*接下来,请允许我用1-2分钟时间把我的简历呈现出来，谢谢！:)*/\n\n"
-	+" /*背景有些刺眼！变暗点换个背景色！请稍等....*/\n\n"
+	+" /*背景不好看，变暗点换个背景色！请稍等....*/\n\n"
 	+" body,html{\n margin:0;\n padding:0;\n transition:all 0.5s;\n overflow-x:hidden;\n width:100%;\n height:100%;\n"
 	+" background:DarkSlateGray !important;\n color:ghostwhite\n }\n\n"
 	+" /*好了！接下来我们开始......*/\n\n"
