@@ -52,7 +52,7 @@ window.onload=function(){
 	var sty=document.getElementById("style"); //获取样式表
 	var rgbox=document.getElementById("rgbox");//获取简历页
 	var body=document.getElementsByTagName("body")[0];
-	body.style.backgroundColor="lightgrey";
+	body.style.backgroundColor="ghostwhite";
 	
 	var strln=str.length;           //样式字符串
 	var strln2=argbox.length;       //简历HTML
