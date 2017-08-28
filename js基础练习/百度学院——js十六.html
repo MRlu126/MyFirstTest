@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+
+<body>
+
+  <div>
+    <label>城市名称：<input id="aqi_city_input" type="text" maxlength="4"></label><br>
+    <label>空气质量指数：<input id="aqi_value_input" type="text" maxlength="3"></label><br>
+    <button id="add_btn">确认添加</button>
+  </div>
+  <table id="aqi_table">
+  <!--
+
+   -->
+  </table>
+  <script type="text/javascript">
+
+window.onload=function(){
+/**
+ * aqiData，存储用户输入的空气指数数据
+ * 示例格式：
+ * aqiData = {
+ *    "北京": 90,
+ *    "上海": 40
+ * };
+ */
+var aqiData = {};
+
+/**
+ * 从用户输入中获取数据，向aqiData中增加一条数据
+ * 然后渲染aqi-list列表，增加新增的数据
+ */
+ var n=0;
+function addAqiData() {
+ var ctname=document.getElementById("aqi_city_input");
+ var airplu=document.getElementById("aqi_value_input");
+
+ ctname.focus();
+ if(ctname.value=="" || airplu.value==""){//提示输入框不能为空
+    alert("不能为空！");
+    ctname.focus();
+ }
+ else{
+        var city = ctname.value;   //city & num 之一不可重复否则不会添加
+        var num = airplu.value;
+        aqiData[city] = num;//利用方括号法添加属性和属性值
+        ctname.focus();
+ }
+}
+
+/**
+ * 渲染aqi-table表格
+ */
+function renderAqiList() {
+var otb=document.getElementById("aqi_table");
+otb.style.background="silver";
+otb.style.width="500px";
+
+var ctname=document.getElementById("aqi_city_input");
+var airplu=document.getElementById("aqi_value_input");
+if(ctname.value=="" || airplu.value==""){
+    return ;
+}
+else{
+    var otr=document.createElement("tr");//行
+
+    var otd=document.createElement("td");//城市单元格
+    otd.innerHTML=ctname.value+"：";
+    otr.appendChild(otd);
+
+    var otd=document.createElement("td");//污染数据单元格
+    otd.innerHTML=airplu.value;
+    otr.appendChild(otd);
+
+    var otd=document.createElement("td");
+    otd.innerHTML="<a href='JavaScript:;' id='test'>删除</a>";
+    otr.appendChild(otd);
+
+    otd.getElementsByTagName("a")[0].onclick=function(){   //很重要
+     if (confirm("确认要删除？")) {
+        otb.removeChild(this.parentNode.parentNode);
+     }
+
+    }
+    otb.appendChild(otr);
+}
+}
+
+/**
+ * 点击add-btn时的处理逻辑
+ * 获取用户输入，更新数据，并进行页面呈现的更新
+ */
+function addBtnHandle() {
+  addAqiData();
+  renderAqiList();
+}
+
+/**
+ * 点击各个删除按钮的时候的处理逻辑
+ * 获取哪个城市数据被删，删除数据，更新表格显示
+ */
+function delBtnHandle() {
+  renderAqiList();
+}
+
+function init() {
+
+  // 在这下面给add-btn绑定一个点击事件，点击时触发addBtnHandle函数
+  var addbtn=document.getElementById("add_btn");
+  addbtn.onclick=function(){
+  addBtnHandle();
+  }
+
+  // 想办法给aqi-table中的所有删除按钮绑定事件，触发delBtnHandle函数
+
+}
+
+init();
+}
+</script>
+</body>
+</html>

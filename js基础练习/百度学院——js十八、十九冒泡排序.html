@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;padding: 5px;
+    }
+    body,html{font-family: '微软雅黑';font-size: 16px;color: SteelBlue;}
+        p{
+            display: block;
+            font-size: 25px;
+            width: 200px;
+            height: 50px;
+            margin: 20px 0;
+        }
+        button{
+        color: SteelBlue;
+        border: 1px solid SteelBlue;
+        border-radius: 5px;
+        background: ghostwhite;
+        cursor: pointer;
+        box-shadow: 0px 3px 0px 0px SteelBlue;
+        }
+        button:hover{
+            transition: 0.3s;
+            box-shadow: 0px 0px 0px 0px darkgray;
+            transform: translateY(3px);
+        }
+        #oul{
+            width: 100%;
+            height: 450px;
+            border: 1px solid silver;
+            border-bottom: 2px solid darkgoldenrod;
+        }
+        #oul li{
+            float: left;
+            list-style: none;
+            width: auto;
+            padding: 5px;
+            margin: 5px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<p>柱状图排序</p>
+请输入数字：<input type="Number" placeholder="请输入小于400数字！" id="inputval">
+<button type="button" onclick="lfadd()">左侧入</button>
+<button type="button" onclick="rgadd()">右侧入</button>
+&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;
+<button type="button" onclick="lfremove()">左侧出</button>
+<button type="button" onclick="rgremove()">右侧出</button>
+<button type="button" onclick="sort()">&nbsp;&nbsp;冒泡排序&nbsp;&nbsp;</button>
+<br/>队列如下：<br/><div>
+    <ul id="oul">
+        <!-- 队列 -->
+    </ul>
+</div>
+<script>
+window.onload=function(){
+    input.focus();
+}
+var oul=document.getElementById("oul");
+// var oul_show=document.getElementById("oul_show");
+var oli=document.getElementsByTagName("li");
+
+var input=document.getElementById("inputval");
+    input.onkeyup=function(event){
+        if(event.keyCode==13){
+            this.value=this.value.replace(/\D/g,'');
+            if(input.value>=401){
+              input.value=400;
+            }
+            if(input.value==""){
+              input.value=10;
+            }
+        }
+    }
+
+    function bg(){                             //随机填充背景色
+             var r=Math.floor(Math.random()*255);
+             var g=Math.floor(Math.random()*255);
+             var b=Math.floor(Math.random()*255);
+             return "rgb("+r+','+g+','+b+")";
+         }
+/******************************************************************************************/
+
+    // 左侧入
+    function lfadd(){
+    var oli=document.getElementsByTagName("li");
+    var n=oli.length;
+    if(n==30){
+    alert("最多可输入30个！");
+    }
+    else if(input.value==""){
+        alert("不能为空！");
+        input.focus();
+    }
+    else if(input.value>=401){
+        alert("数值已大于400！请重新输入");
+        input.focus();
+    }
+    else{
+        var oli=document.createElement("li");
+
+        oli.innerHTML=input.value;
+        oli.style.height=input.value+"px";
+        oli.style.marginTop=(440-input.value)+"px"; //计算柱状的margin-top
+        oli.style.background=bg();
+        oul.prepend(oli);     //从队列前面插入
+        oli.onmouseover=function(){
+            oli.setAttribute("title", "数值为："+oli.innerHTML);    //知识点——————设置标签属性
+        }
+        input.focus();
+        }
+    }
+    // 右侧入
+    function rgadd(){
+    var oli=document.getElementsByTagName("li");
+    var n=oli.length;
+    if(n==30){
+    alert("最多可输入30个！");
+    }
+    else if(input.value==""){
+        alert("不能为空！");
+        input.focus();
+    }
+    else if(input.value>=401){
+        alert("数值已大于400！请重新输入");
+        input.focus();
+    }
+    else{
+        var oli=document.createElement("li");
+        var showli=document.createElement("li");
+        oli.innerHTML=input.value;
+        oli.style.height=input.value+"px";
+        oli.style.marginTop=(440-input.value)+"px"; //计算柱状的margin-top
+        oli.style.background=bg();
+        oul.appendChild(oli);  //从队列后面插入
+        oli.onmouseover=function(){
+            oli.setAttribute("title", "数值为："+oli.innerHTML);  //知识点——————设置标签属性
+        }
+        input.focus();
+        }
+    }
+
+/******************************************************************************************/
+    // 左侧出
+    function lfremove(){
+    var first=document.getElementsByTagName("li")[0]; //找到li的第一个元素
+    oul.removeChild(first);
+    }
+    // 右侧出
+    function rgremove(){
+    var li = document.querySelector("li:last-child");  //找到li的最后一个元素————知识点！
+    oul.removeChild(li);
+    }
+
+/***************************************************************************************/
+// 冒泡排序
+
+function sort(){
+var oli=document.getElementsByTagName("li");
+ var arr=[];
+  //将<li>标签放入空的arr数组中
+  for(var i=0;i<oli.length;i++){
+    arr[i]=oli[i];               //注意
+     }
+  //sort排序，数组中每个元素都是一个<li>,所以要用innerHTML
+  arr.sort(function(li1,li2){
+    var n1=parseInt(li1.innerHTML);
+    var n2=parseInt(li2.innerHTML);
+    return n1-n2;
+  })
+  //通过appendChild进行排序
+  //重新append节点
+  for(var i=0;i<arr.length;i++){
+    oul.appendChild(arr[i]);
+  }
+}
+</script>
+</body>
+</html>
