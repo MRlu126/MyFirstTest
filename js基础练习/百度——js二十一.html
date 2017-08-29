@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 5px;}
+        #oul li{
+            float: left;
+            list-style: none;
+            padding: 5px;
+            margin: 5px;
+            width: auto;
+            border-radius: 5px;
+            background: LightSkyBlue ;
+            transition: all 0.5s;
+        }
+        #oul li a{
+            color: white;
+            text-decoration: none;
+        }
+        #oul_hby li{
+            float: left;
+            list-style: none;
+            padding: 5px;
+            margin: 5px;
+            width: auto;
+            background: LightSeaGreen;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+Tag:<input type="text" id="val" onkeyup="addTag(event)" maxlength="11" autofocus placeholder="请输入.....">
+<div>
+    <ul id="oul">
+    <!-- li -->
+    </ul>
+</div>
+<br/>
+<br/>
+未完善>>>>>>>>>>>>>>>>>>>><br/>
+<textarea name="textarea" id="textarea" cols="40" rows="8"></textarea>
+<br/>
+<button type="button" id="btn_hby">确认兴趣爱好</button>
+<br/>
+<div>
+    <ul id="oul_hby">
+    <!-- li -->
+    </ul>
+</div>
+
+
+
+<script>
+/*input部分*/
+var oul=document.getElementById("oul");
+function addTag(ev){
+    if(ev.keyCode==13){
+        var arr=[];                   //回车触发
+        var input=document.getElementById("val");
+        var li=document.createElement("li");
+        var oli=oul.getElementsByTagName("li");
+        if(input.value!=""){
+            if(oli.length==0){               //li长度为0时
+                li.innerHTML=input.value.trim();
+                oul.appendChild(li);
+                clearinput();
+                btn_dele();
+            }
+            else{
+                if(oli.length>=10){           //最多允许10个Tag，多于10个时，按照录入的先后顺序，把最前面的删掉
+                var fisrtli=document.getElementsByTagName("li")[0];  //索引至第一个li
+                oul.removeChild(fisrtli); //移除
+                li.innerHTML=input.value.trim();
+                oul.appendChild(li);
+                clearinput();
+                btn_dele();
+                }
+                else{                       //li长度小于10时
+                    var bool=new Boolean();
+                    bool=true;
+                    for(var i=0;i<oli.length;i++){
+                        arr[i]=oli[i].innerHTML.trim();   //遍历赋值
+                        if(input.value.trim()==arr[i]){   //如果数组中已存在则返回Boolen为false————不能重复输入
+                            bool=false;}
+                    }
+                    if(bool==false){
+                        alert("-"+input.value+"-  已经存在！");//弹出提示框
+                    }
+                    else{
+                        li.innerHTML=input.value.trim();
+                        oul.appendChild(li);
+                        clearinput();
+                        btn_dele();
+                    }
+                }
+            }
+    }
+    else{
+        alert("不能为空！");
+    }
+    function clearinput(){                //达到清除输入框内容的效果
+        input.setAttribute("type","Number");
+        input.setAttribute("type","text");
+    }
+    function btn_dele(){        //当鼠标悬停在tag上时，tag前增加删除二字，点击tag可删除
+        li.onmouseenter=function(){
+            var oa=document.createElement("a");
+            oa.setAttribute("href","#");
+            oa.innerHTML="&nbsp;&times;";
+            li.appendChild(oa);
+            li.style.backgroundColor="LightCoral ";
+            oa.onclick=function(){
+                oul.removeChild(li);  //删除tag
+            }
+        }
+        li.onmouseleave=function(){    //鼠标移出removechaild()
+            var oa=document.getElementsByTagName("a")[0];
+            li.removeChild(oa);
+            li.style.backgroundColor="LightSkyBlue";
+        }
+    }
+
+    }//回车键函数结束
+}//onkeyup结束
+
+/*************************************************************************************/
+/*textarea部分*/
+var btn_hby=document.getElementById("btn_hby");
+
+var oul_hby=document.getElementById("oul_hby");
+btn_hby.onclick=function(){
+    var textarea=document.getElementById("textarea");
+
+    if(textarea.value.trim()!=""){              //textarea不能为空
+    var oli=oul_hby.getElementsByTagName("li");
+    var astr=[];
+    astr=textarea.value.trim().split(/;|:|,|，| |\r|\n/);  //获取textarea对象数组,可使用多个条件————知识点
+        if(oli.length=0){            //初次添加li
+            if(astr.length>=10){      //大于10个时只添加前10个
+                    alert("最多可添加10个爱好！将添加前10个！");
+                    for(var j=0;j<10;j++){
+                        var li=document.createElement("li");
+                        li.innerHTML=astr[j];
+                        oul_hby.appendChild(li);
+                    }
+            }
+            else{   //小于10个时
+                for(var i=0;i<astr.length;i++){
+                    var li=document.createElement("li");
+                    li.innerHTML=astr[i];
+                    oul_hby.appendChild(li);
+                }
+            }
+        }
+        if(oli.length<=10){         //li长度小于5个
+            var num=0;
+            for(var i=0;i<astr.length;i++){        //遍历texearea内容
+                    var n=0;
+                    for(var j=0;j<oli.length;j++){        //遍历已知oli长度
+                        if(astr[i]==oli[j].innerHTML){    //编列数组查找重读字符串
+                            n=n+1;
+                            num=num+1;         //计数重复字符串
+                            break;
+                        }
+                        else{n=0;}
+                    }
+                    if(n==0){
+                    var li=document.createElement("li");  //新建li节点
+                    li.innerHTML=astr[i];
+                    oul_hby.appendChild(li);         //动态添加
+                    }
+                }
+            if(num!=0){alert("有"+num+"个词重复！")}
+        }
+        else{alert("最多为10个爱好！")}
+    }
+    else{alert("不能为空！")}
+}
+</script>
+</body>
+</html>
