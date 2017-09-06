@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe{
+            width: 20%;
+            height: 90%;
+        }
+        li,a{
+            color: black;
+            list-style: none;
+            text-decoration: none;
+            width: auto;
+        }
+        a:hover{
+            color: DodgerBlue;
+            text-decoration: underline;
+        }
+        #oul{
+            width: auto;
+            height: auto;
+        }
+        #oul li{
+            display: table;
+            width: auto;
+        }
+        .treeli:before{
+            content: '\25B6';
+            margin-left: -10px;
+            font-size: 12px;
+            color: DimGray;
+        }
+        .treeli.active:before{
+            content:'\25BC';
+            color: silver;
+        }
+        .show_ul{
+            max-height: 0;
+            margin-left: -10px;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul id="oul">
+        <li class="treeli"><a href="javascript:;"><input class="oli_ck radio" type="checkbox"><img alt="" src="img/windows_folder.png">&nbsp;常用文件</a></li>
+            <ul class="show_ul">
+                <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;目录文件</a></li>
+                <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;目录文件</a></li>
+            </ul>
+        <li class="treeli"><a href="javascript:;"><input class="oli_ck radio" type="checkbox"><img alt="" src="img/windows_folder.png">&nbsp;邮箱</a></li>
+            <ul class="show_ul">
+                <li class="treeli"><a href="javasript:;"><input class="radio" type="checkbox">QQ邮箱</a></li>
+                    <ul class="show_ul">
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;收信箱</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;草稿箱</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;写信</a></li>
+                    </ul>
+                <li><a href="javasript:;"><input class="radio" type="checkbox">Gmail</a></li>
+                <li class="treeli"><a href="javasript:;"><input class="oli_ck radio" type="checkbox"><img alt="" src="img/windows_folder.png">&nbsp;@163</a></li>
+                <ul class="show_ul">
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;收信箱</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;草稿箱</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;写信</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;垃圾箱</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;纪录</a></li>
+                        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;已发送</a></li>
+                </ul>
+            </ul>
+
+        <li class="treeli"><a href="javascript:;"><input class="oli_ck radio" type="checkbox"><img alt="" src="img/windows_folder.png">&nbsp;信息</a></li>
+            <ul class="show_ul">
+                <li><a href="javasript:;"><input class="radio" type="checkbox">&nbsp;微信</a></li>
+                <li><a href="javasript:;"><input class="radio" type="checkbox">&nbsp;短信</a></li>
+                <li><a href="javasript:;"><input class="radio" type="checkbox">&nbsp;推特</a></li>
+            </ul>
+        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;收信箱</a></li>
+        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;草稿箱</a></li>
+        <li><a href="javascript:;"><img alt="" src="img/word.png"><input class="radio" type="checkbox">&nbsp;写信</a></li>
+
+    </ul>
+</div>
+
+
+<script>
+var oli = document.getElementsByClassName("treeli");
+var i;
+
+for (i = 0; i < oli.length; i++) {
+  oli[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling; //下一个标签元素——ul
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight*i + "px";
+    }
+  }
+}
+//选框
+var checkbox=document.getElementsByClassName("radio");
+for(var j=0;j<checkbox.length;j++){
+    checkbox[j].onclick = function(event){
+     event.stopPropagation();//阻止事件冒泡
+     var achecsib = this.parentNode.parentNode.nextElementSibling;
+     var aridio = achecsib.getElementsByClassName("radio");
+     for(var z = 0;z < aridio.length;z++){
+        if(this.checked){
+            aridio[z].checked = this.checked;
+            aridio[z].disabled = true;
+        }
+        else{aridio[z].disabled = false;}
+     }
+    }
+}
+</script>
+</body>
+</html>
